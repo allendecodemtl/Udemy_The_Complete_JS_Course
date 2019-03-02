@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Asynchronous JavaScript</title>
+</head>
+<body>
+    <h1>Asynchronous JavaScript</h1>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        ///////////////////////////
+        // AJAX and APIs
+
+        // open /Applications/Google\ Chrome.app/ --args --disable-web-security --user-data-dir
+        // file:///Volumes/Disk1/Udemy/The_Complete_JS_Course/workspace/8-asynchronous-JS/starter/asynchronous.html
+        async function getWeatherAw(woeid){
+            
+            try {
+                const result = await axios.get(`https://www.metaweather.com/api/location/${woeid}/`);
+                const tomorrow = result.data.consolidated_weather[0];
+                console.log(`Temperatures tomorrow in ${result.data.title} stay between ${tomorrow.min_temp} and ${tomorrow.max_temp}`);
+
+                return result;
+
+            } catch (err) {
+                console.log(err);
+            }
+           
+        }
+
+        getWeatherAw(2487956);
+
+    </script>
+</body>
+</html>
